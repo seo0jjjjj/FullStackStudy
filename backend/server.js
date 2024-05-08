@@ -1,21 +1,17 @@
-require('dotenv').config({path: "./keys.env"});
+require('dotenv').config({ path: "./keys.env" });
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
+const { getDB } = require('./mongoDB');
 cors = require('cors');
 
+const DB_URL = process.env.DB_URL;
 const app = express();
-let db;
 
-app.listen(5000,()=>{
-  console.log("localhost:5000에서 서버 실행중");
+app.listen(5000, () => {
+  console.log("localhost:5000 에서 서버 실행중");
 })
 
-new MongoClient(process.env.DB_URL).connect().then((client) => {
-  console.log("mongo database conneted");
-  db = client.db('TodoList');
-}).catch((err) => {
-  console.log(err);
-})
+const db = getDB(DB_URL);
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -61,24 +57,24 @@ app.get('/detail/:id', async (req, res) => {
   }
 })
 
-app.get('/edit/:id', async (req,res)=> {
-  let result = await db.collection('post').findOne({_id : new ObjectId(req.params.id)})
+app.get('/edit/:id', async (req, res) => {
+  let result = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) })
 
   console.log(result);
-  if(result == null) res.status(404).send('not found');
-  else res.render('edit.ejs', {result : result})
+  if (result == null) res.status(404).send('not found');
+  else res.render('edit.ejs', { result: result })
 
 })
 
-app.put('/edit', async (req,res)=>{
-  await db.collection('post').updateOne({_id: new ObjectId(req.body.id)},
-  {$set: {title: req.body.title, content: req.body.content}});
+app.put('/edit', async (req, res) => {
+  await db.collection('post').updateOne({ _id: new ObjectId(req.body.id) },
+    { $set: { title: req.body.title, content: req.body.content } });
   console.log(req.body);
   res.redirect('/list');
 });
 
-app.delete('/delete', async (req,res)=>{
+app.delete('/delete', async (req, res) => {
   console.log(req.query)
-  await db.collection('post').deleteOne({_id: new ObjectId(req.query.docid)})
+  await db.collection('post').deleteOne({ _id: new ObjectId(req.query.docid) })
   res.send('삭제완료')
 })

@@ -4,11 +4,10 @@
   "description": "<table>\r   <th>\r   <td>Front-End</td>\r   <td colspan=2>Back-End</td>\r   </th>\r   <tr>\r     <td>library</td>\r     <td>React</td>\r     <td>express-mongoDB</td>\r   </tr>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && nodemon server.js",
+    "client": "cd frontend && npm start"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.2"
-  }
+  "license": "ISC"
 }
