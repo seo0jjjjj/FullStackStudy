@@ -1,0 +1,14 @@
+{
+  "name": "fullstackstudy",
+  "version": "1.0.0",
+  "description": "<table>\r   <th>\r   <td>Front-End</td>\r   <td colspan=2>Back-End</td>\r   </th>\r   <tr>\r     <td>library</td>\r     <td>React</td>\r     <td>express-mongoDB</td>\r   </tr>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
