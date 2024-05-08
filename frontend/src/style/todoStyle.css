@@ -1,0 +1,48 @@
+.todo-nav-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.todo-nav-container .nav-item{
+  width: 200px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.todo-nav-container .nav-item:before{
+  content: "| ";
+  color: white;
+  font-weight: 300;
+  padding-right: 20px;
+}
+
+.todo-nav-container .nav-item:first-child:before{
+  content: "";
+  padding-right: 5px;
+}
+
+.btn {
+  color: black;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.todo-list-container{
+  background-color: white;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-list-container .todo-list-item-container{
+  background-color: red;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
