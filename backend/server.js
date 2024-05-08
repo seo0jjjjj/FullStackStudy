@@ -1,17 +1,30 @@
+// config
 require('dotenv').config({ path: "./keys.env" });
-const express = require('express');
-const { MongoClient, ObjectId } = require('mongodb');
-const { getDB } = require('./mongoDB');
-cors = require('cors');
-
 const DB_URL = process.env.DB_URL;
+
+
+// express
+const express = require('express');
 const app = express();
+
+// mongo db
+const { ObjectId, MongoClient } = require('mongodb');
+
+// cors middleware
+cors = require('cors');
 
 app.listen(5000, () => {
   console.log("localhost:5000 에서 서버 실행중");
 })
 
-const db = getDB(DB_URL);
+let db;
+new MongoClient(DB_URL).connect().then(client => {
+  db = client.db("TodoList")
+  console.log("mongodb가 연결되었습니다.");
+}).catch((err) => {
+  console.log("mongodb에 연결할 수 없습니다.");
+  throw err;
+});
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -20,51 +33,38 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get('/list', async (req, res) => {
-  let result = await db.collection('todoElement').find().toArray();
-  res.json(result);
+  let result = await db.collection('todoElement')
+    .find()
+    .toArray()
+  res.status(201).json(result);
+
 });
 
 app.post('/add', async (req, res) => {
-  console.log(req.body);
-  try {
-    if (req.body.title == '') {
-      res.send("제목을 입력하세요.")
-    } else {
-      await db.collection('post').insertOne({
-        title: req.body.title,
-        content: req.body.content
-      })
-      res.redirect('/list');
 
-    }
-  } catch (err) {
-    console.err(err);
-    res.status(500).send('서버 error');
+  const { content } = req.body;
+  console.log("[add] request from client: ", req.body?.content);
+
+  if (!content) {
+    const errorMsg = !content ? "할 일을 입력해주세요." : "잘못된 접근입니다.";
+    return res.status(400).json({ error: errorMsg });
   }
 
-})
+  const response = await db.collection('todoElement').insertOne({
+    content: req.body.content
+  })
 
-app.get('/detail/:id', async (req, res) => {
-  console.log(req.params.id)
   try {
-    let result = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) })
-
-    if (result == null) res.status.apply(404).send('url 이 이상함')
-    else res.render('detail.ejs', { result: result });
-  } catch (err) {
-    console.log(err)
-    res.status(404).send('url이 이상함')
+    const response = await db.collection('todoElement').insertOne({ content });
+    res.status(200).json({
+      message: "데이터가 정상적으로 입력됨.",
+      id: response.insertedId
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to insert data" });
   }
-})
+});
 
-app.get('/edit/:id', async (req, res) => {
-  let result = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) })
-
-  console.log(result);
-  if (result == null) res.status(404).send('not found');
-  else res.render('edit.ejs', { result: result })
-
-})
 
 app.put('/edit', async (req, res) => {
   await db.collection('post').updateOne({ _id: new ObjectId(req.body.id) },
