@@ -31,7 +31,10 @@ export function ShowTodo(){
     },[])
     return (<>
     <div className="todo-list-container">
-      {todoList?.map(elements => <div>{elements?.content}</div> )}
+      {todoList?.map(elements => <div>
+        {elements?.content}
+        
+        </div> )}
     </div>
     </>) 
 }
@@ -59,11 +62,14 @@ export function EditTodo(props){
 
 
 export function CreateTodo(props){
+  const [todoText, setTodoText] = useState();
   const onSubmit = (e) =>{
-    alert("추가하기 버튼 클릭");
+    
   }
 
   return <TodoForm 
+    todoText={todoText}
+    setTodoText = {setTodoText}
     title="할일 추가하기"
     btnText="추가하기"
     onSubmit={onSubmit}
@@ -72,8 +78,7 @@ export function CreateTodo(props){
 }
 
 function TodoForm(props){
-  const {title, btnText, onSubmit, todoContent} = props;
-  const [todoText, setTodoText] = useState(todoContent);
+  const {title, btnText, onSubmit, todoContent, todoText, setTodoText} = props;
   const onTextChange = (e)=>{
     setTodoText(e.target.value);
   }
