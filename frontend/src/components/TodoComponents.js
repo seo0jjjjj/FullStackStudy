@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import '../style/todoStyle.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function TodoNav(props){
   return(
@@ -23,16 +23,15 @@ export function Header(props){
 }
 
 export function ShowTodo(){
-  const content = "내용";
+    const [todoList, setTodoList] = useState();    
+    useEffect(()=>{
+      let list;
+      fetch('http://localhost:5000/list').then(res => res.json()).then(setTodoList);
 
+    },[])
     return (<>
     <div className="todo-list-container">
-      <div className="todo-list-item-container">
-        <h4>{content ?? "내용이 없습니다"}</h4>
-        <i class="bx bx-hot"></i>
-        <i class="bx bx-hot"></i>
-        <i class="bx bx-hot"></i>
-      </div>
+      {todoList?.map(elements => <div>{elements?.content}</div> )}
     </div>
     </>) 
 }
