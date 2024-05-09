@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { Todo } from "./page/Todo";
-import { CreateTodo, DeleteTodo, EditTodo, ShowTodo } from "./components/TodoComponents";
+import { CreateTodo } from "./components/CreateTodo";
+import { ShowTodo } from "./components/ShowTodo";
+import { DeleteTodo } from "./components/DeleteTodo";
+import { EditTodo } from "./components/EditTodo";
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useOutlet } from "react-router-dom";
-import { Header, TodoNav } from "../components/TodoComponents";
+import { Header } from "../components/Header";
+import { TodoNav } from "../components/TodoNav";
 
 export function Todo(props) {
   const hasOulet = useOutlet();
