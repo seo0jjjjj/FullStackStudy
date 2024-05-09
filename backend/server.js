@@ -10,9 +10,6 @@ const app = express();
 // mongo db
 const { ObjectId, MongoClient } = require('mongodb');
 
-// cors middleware
-cors = require('cors');
-
 app.listen(5000, () => {
   console.log("localhost:5000 에서 서버 실행중");
 })
@@ -27,10 +24,7 @@ new MongoClient(DB_URL).connect().then(client => {
 });
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
 
 app.get('/list', async (req, res) => {
   let result = await db.collection('todoElement')
