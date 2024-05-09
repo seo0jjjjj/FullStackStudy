@@ -10,7 +10,7 @@ let db;
 async function connectMongoDB(url,DB_NAME){ 
   try{
   const client = await new MongoClient(url).connect();
-  const db = client.db(DB_NAME)
+  db = client.db(DB_NAME)
   console.log("mongodb가 연결되었습니다.");
 
   }catch(err){

@@ -11,7 +11,11 @@ export function TodoView() {
     let list;
     fetch('http://localhost:5000/list')
       .then(res => res.json())
-      .then(setTodoList);
+      .then(setTodoList)
+      .catch(err => {
+        alert("데이터베이스에 연결할 수 없습니다.");
+        setTodoList(null);
+      })
 
       // 업데이트 완료
       setShouldReRender(false);

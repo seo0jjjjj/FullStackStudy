@@ -9,7 +9,7 @@ async function run() {
   await connectMongoDB(DB_URL,DB_NAME);
   
   // routing
-  initRouter(getDb);
+  initRouter(getDb());
 
   app.listen(PORT, () => {
     console.log(`localhost:${PORT} 에서 서버 실행중`);
