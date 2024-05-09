@@ -1,12 +1,11 @@
 .todo-nav-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 8px 12px;
 }
 
 .todo-nav-container .nav-item{
-  width: 200px;
   text-align: center;
   font-weight: 500;
   font-size: 16px;
@@ -17,7 +16,7 @@
   content: "| ";
   color: white;
   font-weight: 300;
-  padding-right: 20px;
+  padding: 20px;
 }
 
 .todo-nav-container .nav-item:first-child:before{
