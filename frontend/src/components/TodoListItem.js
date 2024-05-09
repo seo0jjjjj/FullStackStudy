@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export function TodoElement({ id, content, shouldUpdate}) {
+export function TodoListItem({ id, content, shouldUpdate}) {
   let navigate = useNavigate();
 
   const onEditBtnClicked = (e) => {

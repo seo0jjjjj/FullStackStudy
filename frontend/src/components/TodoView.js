@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { TodoElement } from "./TodoElement";
+import { TodoListItem } from "./TodoListItem";
 
-export function ShowTodo() {
+export function TodoView() {
   const [todoList, setTodoList] = useState();
   const [shouldReRedner, setShouldReRender] = useState(true);
   useEffect(() => {
@@ -19,7 +19,7 @@ export function ShowTodo() {
   return (<>
     <div className="todo-list-container">
       {todoList?.map(element =>
-        <TodoElement key={element._id} id={element._id} content={element.content} shouldUpdate={setShouldReRender} />)}
+        <TodoListItem key={element._id} id={element._id} content={element.content} shouldUpdate={setShouldReRender} />)}
     </div>
   </>)
 }

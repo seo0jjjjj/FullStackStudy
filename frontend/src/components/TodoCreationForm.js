@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TodoForm } from "./TodoForm";
 
-export function CreateTodo(props) {
+export function TodoCreationForm(props) {
   const [todoText, setTodoText] = useState();
   const onSubmit = async (e) => {
     try {
