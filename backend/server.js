@@ -50,10 +50,6 @@ app.post('/add', async (req, res) => {
     return res.status(400).json({ error: errorMsg });
   }
 
-  const response = await db.collection('todoElement').insertOne({
-    content: req.body.content
-  })
-
   try {
     const response = await db.collection('todoElement').insertOne({ content });
     res.status(200).json({
@@ -66,15 +62,52 @@ app.post('/add', async (req, res) => {
 });
 
 
+app.get('/get', async (req,res) => {
+  const {id} = req.query
+  console.log("/get 요청 [id] : "+ id);
+  if(!id){
+    res.status(400).json({error : "해당 id 값이 비어있습니다."});
+    return;
+  }
+
+  const todoObject = await db.collection('todoElement').findOne({ _id : new ObjectId(id)})
+  res.status(200).json({content : todoObject?.content});
+  console.log("\t /get 응답: ")
+  console.log(todoObject)
+})
+
 app.put('/edit', async (req, res) => {
-  await db.collection('post').updateOne({ _id: new ObjectId(req.body.id) },
-    { $set: { title: req.body.title, content: req.body.content } });
-  console.log(req.body);
-  res.redirect('/list');
-});
+  console.log("/edit 업데이트 요청")
+  const {id, content} = req.body 
+  const errorMsg = !id ? "잘못된 접근입니다." : "해당 할일이 존재하지 않습니다."
+
+  if(!id) {
+    res.status(400).json({error : errorMsg});
+    return;
+  }
+
+  await db.collection('todoElement').updateOne({ _id: new ObjectId(id) },
+    { $set: { content: content } }).catch(err=>{
+      res.status(500).res.json({error : errorMsg});
+    }).then(result => {
+      // 정상적인 업데이트 완료
+      res.status(200).json({message : "값이 수정되었습니다."});
+    })
+
+//
+  });
+
 
 app.delete('/delete', async (req, res) => {
-  console.log(req.query)
-  await db.collection('post').deleteOne({ _id: new ObjectId(req.query.docid) })
-  res.send('삭제완료')
+  console.log("/delete 요청")
+
+  const {id} = req.query
+  console.log("삭제할 id 값 : " + id);
+  if(!id) {
+    res.status(400).json({error : "id가 존재하지 않습니다."});
+    return;
+  }
+
+  await db.collection('todoElement').deleteOne({ _id: new ObjectId(id) })
+  res.status(200).json({message : "삭제되었습니다."});
 })

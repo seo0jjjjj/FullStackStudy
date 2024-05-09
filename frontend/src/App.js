@@ -9,7 +9,8 @@ function App() {
         <Route path="add" element={<CreateTodo/>}  />
         <Route path="list" element={<ShowTodo/>} />
         <Route path="delete" element={<DeleteTodo/>} />
-        <Route path="edit" element={<EditTodo/>} />
+        <Route path="edit/:id" element={<EditTodo/>} />
+        <Route path="edit" element={<EditTodo id={3}/>} />
       
       </Route>
     </Routes>

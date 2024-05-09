@@ -32,17 +32,35 @@
 }
 
 .todo-list-container{
-  background-color: white;
+  background-color: transparent;
   min-height: 200px;
   display: flex;
   flex-direction: column;
 }
 
-.todo-list-container .todo-list-item-container{
-  background-color: red;
-  align-items: center;
-  text-align: center;
+.todo-list-item{
+  margin: 0px 50px;
+  align-content: center;
   display: flex;
   flex-direction: row;
+  justify-content: space-between; /* 여기를 추가하세요 */
+  
+}
+
+.content{
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  font-size: 30px;
+
+}
+
+.icon-container{
+  font-size: 3rem;
+  align-items: center;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
 }
 
