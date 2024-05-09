@@ -1,32 +1,13 @@
-// config
-require('dotenv').config({ path: "./keys.env" });
-const DB_URL = process.env.DB_URL;
-
-
-// express
 const express = require('express');
-const app = express();
-
-// mongo db
-const { ObjectId, MongoClient } = require('mongodb');
-
-app.listen(5000, () => {
-  console.log("localhost:5000 에서 서버 실행중");
-})
+const router = express.Router();
+const {ObjectId} = require('mongodb');
 
 let db;
-new MongoClient(DB_URL).connect().then(client => {
-  db = client.db("TodoList")
-  console.log("mongodb가 연결되었습니다.");
-}).catch((err) => {
-  console.log("mongodb에 연결할 수 없습니다.");
-  throw err;
-});
+function initRouter(database){
+  db = database;
+}
 
-app.set('view engine', 'ejs');
-
-
-app.get('/list', async (req, res) => {
+router.get('/list', async (req, res) => {
   let result = await db.collection('todoElement')
     .find()
     .toArray()
@@ -34,7 +15,7 @@ app.get('/list', async (req, res) => {
 
 });
 
-app.post('/add', async (req, res) => {
+router.post('/add', async (req, res) => {
 
   const { content } = req.body;
   console.log("[add] request from client: ", req.body?.content);
@@ -56,7 +37,7 @@ app.post('/add', async (req, res) => {
 });
 
 
-app.get('/get', async (req,res) => {
+router.get('/get', async (req,res) => {
   const {id} = req.query
   console.log("/get 요청 [id] : "+ id);
   if(!id){
@@ -70,7 +51,7 @@ app.get('/get', async (req,res) => {
   console.log(todoObject)
 })
 
-app.put('/edit', async (req, res) => {
+router.put('/edit', async (req, res) => {
   console.log("/edit 업데이트 요청")
   const {id, content} = req.body 
   const errorMsg = !id ? "잘못된 접근입니다." : "해당 할일이 존재하지 않습니다."
@@ -92,7 +73,7 @@ app.put('/edit', async (req, res) => {
   });
 
 
-app.delete('/delete', async (req, res) => {
+router.delete('/delete', async (req, res) => {
   console.log("/delete 요청")
 
   const {id} = req.query
@@ -105,3 +86,5 @@ app.delete('/delete', async (req, res) => {
   await db.collection('todoElement').deleteOne({ _id: new ObjectId(id) })
   res.status(200).json({message : "삭제되었습니다."});
 })
+
+module.exports = {router, initRouter};
