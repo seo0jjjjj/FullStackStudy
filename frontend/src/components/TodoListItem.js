@@ -14,7 +14,7 @@ export function TodoListItem({ id, content, shouldUpdate}) {
 
     try{
     // 삭제 진행
-    const response = await fetch(`http://localhost:5000/delete?id=${id}`, {      
+    const response = await fetch(`http://192.168.0.74:5000/delete?id=${id}`, {      
       method: "DELETE"
     })
 
