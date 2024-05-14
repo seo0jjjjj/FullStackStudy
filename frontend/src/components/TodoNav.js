@@ -5,7 +5,7 @@ export function TodoNav(props) {
     <ol className="todo-nav-container">
       <NavLink to="/add" className="nav-item">할일 추가</NavLink>
       <NavLink to="/list" className="nav-item">할일 보기</NavLink>
-      {/* <NavLink to="/delete" className="nav-item">할일 삭제</NavLink> */}
-      {/* <NavLink to="/edit" className="nav-item">할일 수정</NavLink> */}
+      <NavLink to="/sign-in" className="nav-item">로그인 </NavLink>
+      <NavLink to="/sign-up" className="nav-item">회원가입</NavLink>
     </ol>);
 }
