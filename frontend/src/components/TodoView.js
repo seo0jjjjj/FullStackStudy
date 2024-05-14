@@ -9,7 +9,7 @@ export function TodoView() {
     if(!shouldReRedner) return;
 
     let list;
-    fetch('http://localhost:5000/list')
+    fetch('http://192.168.0.74:5000/list')
       .then(res => res.json())
       .then(setTodoList)
       .catch(err => {

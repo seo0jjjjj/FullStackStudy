@@ -14,7 +14,7 @@ export function EditTodo(props) {
       navigate("/list");
       return;
     }
-    fetch(`http://localhost:5000/get?id=${id}`)
+    fetch(`http://192.168.0.74:5000/get?id=${id}`)
     .then(res=> {
       // 해당 아이디 값에 존재하지 않는 요청
       if(res.status == 400){
@@ -31,7 +31,7 @@ export function EditTodo(props) {
   const onSubmit = async (e) => {
     /// 서버에 업데이트 요청 보내기
     try{
-    const response = await fetch("http://localhost:5000/edit", {
+    const response = await fetch("http://192.168.0.74:5000/edit", {
       headers: { 'Content-Type': 'application/json' },
       method: "PUT",
       body: JSON.stringify({  'id': `${id}`, 'content': `${todoText}`})

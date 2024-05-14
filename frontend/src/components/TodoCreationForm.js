@@ -5,7 +5,7 @@ export function TodoCreationForm(props) {
   const [todoText, setTodoText] = useState();
   const onSubmit = async (e) => {
     try {
-      const response = await fetch("http://localhost:5000/add", {
+      const response = await fetch("http://192.168.0.74:5000/add", {
         headers: { 'Content-Type': 'application/json' },
         method: "POST",
         body: JSON.stringify({ content: todoText })
