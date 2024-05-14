@@ -3,6 +3,8 @@ import { Todo } from "./page/Todo";
 import { TodoCreationForm } from "./components/TodoCreationForm";
 import { TodoView } from "./components/TodoView";
 import { EditTodo } from "./components/EditTodo";
+import {SignIn} from "./page/SignIn";
+import {SignUp} from "./page/SignUp";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="edit/:id" element={<EditTodo/>} />
         <Route path="edit" element={<EditTodo/>} />
       </Route>
+        <Route path="sign-in" element={<SignIn/>} />
+        <Route path="sign-up" element={<SignUp/>} />
     </Routes>
   );
 }

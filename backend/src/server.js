@@ -1,6 +1,6 @@
 const app = require('./middlewares');
 const { getDb, connectMongoDB } = require('./db');
-const { router, initRouter } = require('./router');
+const { router, initRouter } = require('./routers/router');
 const {DB_URL, PORT, DB_NAME} = require('../config/config')
 
 async function run() {
