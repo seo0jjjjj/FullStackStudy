@@ -1,3 +1,44 @@
+
+.login-container {
+  padding: 20px;
+  margin-top: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+label{
+  font-size: 0.8em;
+}
+
+input{
+  border: none;
+  border-bottom: 1px solid gray;
+  background-color: transparent;
+  width: 30rem;
+  margin: 10px 0px;
+}
+
 .login-form {
-  background-color: red;
+  padding-top : 20px;
+
+}
+
+button{
+  margin: 20px 0px;
+  font-size: 1em;
+  width: 30rem;
+  border-radius: 12px;
+}
+
+button:disabled{
+  background-color: #1266e2
+}
+
+.sigin-up-text{
+  margin: 0px 10px;
+  font-size: 1.1em;
 }

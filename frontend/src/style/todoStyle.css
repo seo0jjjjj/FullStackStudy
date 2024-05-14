@@ -5,16 +5,25 @@
   padding: 8px 12px;
 }
 
+.todo-container {
+  background-color: #FCFCFF;
+  padding : 20px;
+  margin-top : 50px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
 .todo-nav-container .nav-item{
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   text-decoration: none;
 }
 
 .todo-nav-container .nav-item:before{
   content: "| ";
-  color: white;
+  color: black;
   font-weight: 300;
   padding: 20px;
 }
