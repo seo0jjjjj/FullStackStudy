@@ -4,6 +4,7 @@ import { Spinner } from "./Spinner";
 export function SpinnerButton({ title, onBtnClicked }) {
   const [isLoading, setIsLoading] = useState(false);
   const onSpinBtnClicked = (async (event) => {
+    event.preventDefault();
     setIsLoading(true);
     const result = await onBtnClicked(event);
     console.log('btn ' + title + ' clicked')

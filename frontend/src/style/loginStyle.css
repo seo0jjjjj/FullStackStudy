@@ -22,6 +22,11 @@ input{
   margin: 10px 0px;
 }
 
+input:focus{
+  outline:none;
+  border-bottom: 2px solid #1266e2;
+} 
+
 .login-form {
   padding-top : 20px;
 
@@ -42,3 +47,26 @@ button:disabled{
   margin: 0px 10px;
   font-size: 1.1em;
 }
+
+.check-vaild-text {
+  font-size: 10px;
+  color: tomato;
+  display: block;
+  position: relative;
+  padding: 0px;
+  margin-top : 0px;
+}
+
+.input-field{
+  position: relative;
+}
+
+.input-icon{
+  right: 0;
+  font-size: 24px;
+  margin-top: 12px;
+  margin-right: 12px;
+  position: absolute;
+}
+
+
