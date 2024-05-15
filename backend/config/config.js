@@ -11,5 +11,6 @@ module.exports = {
   PORT: process.env.PORT || 5000,
   DB_URL: dbURL,
   DB_PORT: process.env.DB_PORT,
-  DB_NAME: process.env.DB_NAME
+  DB_NAME: process.env.DB_NAME,
+  JWT_KEY: process.env.JWT_KEY,
 };

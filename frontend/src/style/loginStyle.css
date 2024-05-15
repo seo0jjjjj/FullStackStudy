@@ -1,5 +1,5 @@
-
 .login-container {
+  position: relative;
   padding: 20px;
   margin-top: 50px;
   background-color: white;
@@ -10,11 +10,11 @@
   font-size: 16px;
 }
 
-label{
+label {
   font-size: 0.8em;
 }
 
-input{
+.input-field input {
   border: none;
   border-bottom: 1px solid gray;
   background-color: transparent;
@@ -22,28 +22,30 @@ input{
   margin: 10px 0px;
 }
 
-input:focus{
-  outline:none;
+.input-field input:focus {
+  outline: none;
   border-bottom: 2px solid #1266e2;
-} 
+}
 
 .login-form {
-  padding-top : 20px;
+  position: relative;
+  padding-top: 20px;
 
 }
 
-button{
+button {
   margin: 20px 0px;
   font-size: 1em;
   width: 30rem;
   border-radius: 12px;
+  user-select: none;
 }
 
-button:disabled{
+button:disabled {
   background-color: #1266e2
 }
 
-.sigin-up-text{
+.sigin-up-text {
   margin: 0px 10px;
   font-size: 1.1em;
 }
@@ -54,19 +56,99 @@ button:disabled{
   display: block;
   position: relative;
   padding: 0px;
-  margin-top : 0px;
+  margin-top: 0px;
 }
 
-.input-field{
+.input-field {
   position: relative;
 }
 
-.input-icon{
+.input-icon {
   right: 0;
   font-size: 24px;
-  margin-top: 12px;
-  margin-right: 12px;
+  margin: 17px 0px;
+  margin-right: 16px;
   position: absolute;
+
 }
 
 
+.slide-window {
+  width: 480px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-window .slide-container {
+  display: flex;
+  flex-direction: row;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.5s ease-out;
+  /* transform: translateX(-50%); */
+
+}
+
+.slide-item {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.bxs-chevron-right {
+  right: 0;
+}
+
+.bxs-chevron-left {
+  left: 0;
+}
+
+.arrow-btn:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+
+.arrow-btn {
+  position: absolute;
+  font-size: 50px;
+  top: 50%;
+  bottom: 50%;
+  opacity: 0;
+  user-select: none;
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 18px;
+}
+
+.profile-file-input {
+  border: 1px solid tomato;
+  display: block;
+  background-color: red;
+}
+
+.profile-file-input::file-selector-button {
+  border: 1px solid tomato;
+  display: block;
+  background-color: blue;
+}
+
+.profile-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-nickname-input {
+  border: 1px solid tomato;
+  display: block;
+}
+
+.profile-item {
+  width: 50%;
+}

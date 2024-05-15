@@ -1,4 +1,4 @@
-.todo-nav-container{
+.todo-nav-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,28 +7,28 @@
 
 .todo-container {
   background-color: #FCFCFF;
-  padding : 20px;
-  margin-top : 50px;
+  padding: 20px;
+  margin-top: 50px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
 }
 
-.todo-nav-container .nav-item{
+.todo-nav-container .nav-item {
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
 }
 
-.todo-nav-container .nav-item:before{
+.todo-nav-container .nav-item:before {
   content: "| ";
   color: black;
   font-weight: 300;
   padding: 20px;
 }
 
-.todo-nav-container .nav-item:first-child:before{
+.todo-nav-container .nav-item:first-child:before {
   content: "";
   padding-right: 5px;
 }
@@ -39,23 +39,24 @@
   font-weight: 500;
 }
 
-.todo-list-container{
+.todo-list-container {
   background-color: transparent;
   min-height: 200px;
   display: flex;
   flex-direction: column;
 }
 
-.todo-list-item{
+.todo-list-item {
   margin: 0px 50px;
   align-content: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* 여기를 추가하세요 */
-  
+  justify-content: space-between;
+  /* 여기를 추가하세요 */
+
 }
 
-.content{
+.content {
   display: flex;
   align-items: center;
   margin: 20px;
@@ -63,12 +64,12 @@
 
 }
 
-.icon-container{
+.icon-container {
   font-size: 3rem;
   align-items: center;
+
   padding: 10px;
   width: 200px;
   display: flex;
   justify-content: flex-end;
 }
-
