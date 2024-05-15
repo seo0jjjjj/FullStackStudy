@@ -20,27 +20,27 @@ export function SignUp() {
 
   const handlePwChange = (e) => {
     setPw(e.target.value);
-  };  
+  };
   const handlePw2Change = async (e) => {
     setPw2(e.target.value);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(pw + " \t " + pw2)
-    if(pw?.replace(/\s+/g, '') === "") {
-      setIsVaildTextDisplay("");
+    if (pw?.replace(/\s+/g, '') === "" || pw2?.replace(/\s+/g, '') === "") {
+      setIsVaildTextDisplay("none");
       setIsVaildText("비밀번호를 입력해주세요.");
     }
-    else if(pw !== pw2){
+    else if (pw !== pw2) {
       setIsVaildTextDisplay("");
       setIsVaildTextColor("red");
       setIsVaildText("비밀번호가 일치하지 않습니다.");
-    }else{
+    } else {
       setIsVaildTextDisplay("");
       setIsVaildTextColor("green");
       setIsVaildText("비밀번호가 일치합니다.");
     }
-  },[pw,pw2])
+  }, [pw, pw2])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,16 +54,13 @@ export function SignUp() {
       <form onSubmit={handleSubmit} className='login-form'>
         <InputField label="아이디" value={id} onChange={handleIdChange} />
         <InputField label="비밀번호" type="password" value={pw} onChange={handlePwChange} />
-        <InputField label="비밀번호 확인" type= "password" value={pw2} onChange={handlePw2Change} />
-        <p className="check-vaild-text" style={{color : isVaildTextColor, display: isVaildTextDisplay}}>{isVaildText}</p>
-        <SpinnerButton title={'다음'} onBtnClicked={ async ()=>{
-                      await new Promise((res,rej)=>{setTimeout(()=>{
-                        console.log("버튼 활성화");
-                        res(1);
-                      },3000);
-                    });
-                    }
-          }/>
+        <InputField label="비밀번호 확인" type="password" value={pw2} onChange={handlePw2Change} />
+        <p className="check-vaild-text" style={{ color: isVaildTextColor, display: isVaildTextDisplay }}>{isVaildText}</p>
+        <SpinnerButton title={'다음'} onBtnClicked={async () => {
+          // db에 아이디 중복검사
+          // 아이디 
+        }
+        } />
       </form>
     </div>
   </>
