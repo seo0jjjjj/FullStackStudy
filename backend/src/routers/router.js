@@ -3,7 +3,7 @@ const router = express.Router();
 const { ObjectId } = require('mongodb');
 
 let db;
-function initRouter(database) {
+function initIndexRouter(database) {
   db = database;
 }
 
@@ -96,4 +96,4 @@ router.delete('/delete', async (req, res) => {
   res.status(200).json({ message: "삭제되었습니다." });
 })
 
-module.exports = { router, initRouter };
+module.exports = { router, initIndexRouter };

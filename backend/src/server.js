@@ -1,7 +1,8 @@
 const app = require('./middlewares');
 const { getDb, connectMongoDB } = require('./db');
-const { router, initRouter } = require('./routers/router');
-const { DB_URL, PORT, DB_NAME } = require('../config/config')
+const { router, initIndexRouter } = require('./routers/router');
+const { DB_URL, PORT, DB_NAME } = require('../config/config');
+const { initAccountRouter, accountRouter } = require('./routers/account');
 
 async function run() {
 
@@ -9,13 +10,15 @@ async function run() {
   await connectMongoDB(DB_URL, DB_NAME);
 
   // routing
-  initRouter(getDb());
+  initIndexRouter(getDb());
+  initAccountRouter(getDb());
 
   app.listen(PORT, () => {
     console.log(`localhost:${PORT} 에서 서버 실행중`);
   });
 
   app.use(router);
+  app.use("/account", accountRouter);
 }
 
 run();

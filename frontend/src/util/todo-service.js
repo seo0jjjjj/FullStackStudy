@@ -5,7 +5,7 @@ const instance = axios.create({
     baseURL: SERVER_URL
 });
 
-function handleError(error) {
+export function handleError(error) {
     const response = error.response?.data || { error: 'No Response', message: '서버가 응답하지 않습니다.' };
     console.error(response);
     return ['error', response];

@@ -19,7 +19,7 @@ export function TodoListItem({ id, content, shouldUpdate }) {
     // 삭제 취소
     if (!isDelete) return;
 
-    const [status, data] = await deleteTodoById(id);
+    const [_, data] = await deleteTodoById(id);
     alert(data?.message); // 어차피 성공도 message로 반환해서 메세지만 보여주면됨.
     shouldUpdate(true); // 리스트 새로고침
   }
