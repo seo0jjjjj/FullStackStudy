@@ -13,12 +13,12 @@ export function TodoView() {
     // 업데이트 해야되지 않을 경우, 
     if (!shouldReRedner) return;
 
-    getTodoList().then((status, res) => {
+    getTodoList().then(([status, res]) => {
       if (status === "ok") {
         setTodoList(res);
       }
       else {
-        alert(`${res?.error} \n ${res?.message}`);
+        alert(`${res?.message}`);
       }
     });
 
@@ -30,6 +30,7 @@ export function TodoView() {
     <div className="todo-list-container">
       {todoList?.map(element =>
         <TodoListItem key={element._id} id={element._id} content={element.content} shouldUpdate={setShouldReRender} />)}
+      {todoList?.length === 0 && <h3>할 일이 없어요.</h3>}
     </div>
   </>)
 }

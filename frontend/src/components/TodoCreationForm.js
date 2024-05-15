@@ -1,30 +1,17 @@
 import { useState } from "react";
 import { TodoForm } from "./TodoForm";
+import { createTodo } from "../util/todo-service";
 
+/**
+ * Todo를 추가하는 페이지 
+ */
 export function TodoCreationForm(props) {
   const [todoText, setTodoText] = useState();
+
+  // Todo 추가하기 버튼 이벤트
   const onSubmit = async (e) => {
-    try {
-      const response = await fetch("http://192.168.0.74:5000/add", {
-        headers: { 'Content-Type': 'application/json' },
-        method: "POST",
-        body: JSON.stringify({ content: todoText })
-      })
-
-      // 입력 오류: null인 content를 넘겼을 떄,
-      if (!response.ok) {
-        const errorMsg = await response.json();
-        alert(errorMsg.error ?? "값이 잘못되었습니다.");
-        setTodoText("");
-        return;
-      }
-    } catch (err) {
-      alert("서버가 응답하지 않습니다.");
-      console.error("fetch 에러 발생" + err);
-      return;
-    };
-    alert("값이 저장되었습니다.");
-
+    const [_, res] = await createTodo(todoText);
+    alert(res.message);
   }
 
   return <TodoForm
