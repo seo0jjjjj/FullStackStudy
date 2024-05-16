@@ -20,7 +20,7 @@ export const InputField = memo(({ type, label, value, onChange }) => {
       <label>{label}</label>
       <div className="input-field">
         <input type={inputType} value={value} onChange={onChange} id={label} className="input-field" />
-        {type === "password" && <i class='bx bx-show-alt input-icon' onClick={onFieldHiddenBtnClicked}></i>}
+        {type === "password" && <i className='bx bx-show-alt input-icon' onClick={onFieldHiddenBtnClicked}></i>}
       </div>
     </div>
   );

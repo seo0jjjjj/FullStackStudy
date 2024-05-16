@@ -7,7 +7,6 @@ export function SpinnerButton({ title, onBtnClicked }) {
     event.preventDefault();
     setIsLoading(true);
     const result = await onBtnClicked(event);
-    console.log('btn ' + title + ' clicked')
     setIsLoading(false);
   });
 
