@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
+const morgan = require('morgan');
 
 
 const bodyParser = require('body-parser');
@@ -9,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const { CLIENT_URL } = require('../config/config');
 
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());

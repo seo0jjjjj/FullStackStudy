@@ -13,6 +13,8 @@ async function run() {
   initIndexRouter(getDb());
   initAccountRouter(getDb());
 
+  app.set('env','development');
+
   app.listen(PORT, () => {
     console.log(`localhost:${PORT} 에서 서버 실행중`);
   });
